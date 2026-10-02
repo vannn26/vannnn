@@ -1,0 +1,1391 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Jejak Pahlawan Indonesia 🇮🇩</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#080b12;
+    color:white;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:1000;
+    background:rgba(5,7,12,.85);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.nav-container{
+    max-width:1200px;
+    margin:auto;
+    padding:18px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:21px;
+    font-weight:bold;
+    color:#fff;
+}
+
+.logo span{
+    color:#e63946;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#ff4757;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:100px 20px 60px;
+
+    background:
+    linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.85)),
+    radial-gradient(circle at center,#7d1018,#080b12 65%);
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.flag{
+    font-size:60px;
+    margin-bottom:20px;
+    animation:float 3s infinite ease-in-out;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-12px)}
+}
+
+.hero h1{
+    font-size:clamp(40px,7vw,80px);
+    margin-bottom:20px;
+    letter-spacing:2px;
+}
+
+.hero h1 span{
+    color:#e63946;
+}
+
+.hero p{
+    color:#c9c9c9;
+    font-size:18px;
+    line-height:1.7;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:14px 25px;
+    background:#e63946;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    transition:.3s;
+    box-shadow:0 0 25px rgba(230,57,70,.4);
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 40px rgba(230,57,70,.7);
+}
+
+/* ================= SECTION ================= */
+
+section{
+    max-width:1250px;
+    margin:auto;
+    padding:90px 25px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.section-title h2{
+    font-size:40px;
+    margin-bottom:12px;
+}
+
+.section-title p{
+    color:#999;
+}
+
+/* ================= SEARCH ================= */
+
+.search-area{
+    position:sticky;
+    top:75px;
+    z-index:50;
+    background:rgba(8,11,18,.92);
+    backdrop-filter:blur(12px);
+    padding:15px 0;
+}
+
+.search-box{
+    max-width:800px;
+    margin:auto;
+    display:flex;
+    gap:10px;
+}
+
+.search-box input{
+    flex:1;
+    padding:17px 20px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:#151a24;
+    color:white;
+    font-size:16px;
+    border:1px solid #2b3240;
+}
+
+.search-box input:focus{
+    border-color:#e63946;
+    box-shadow:0 0 15px rgba(230,57,70,.2);
+}
+
+.search-box button{
+    padding:0 25px;
+    border:none;
+    border-radius:12px;
+    background:#e63946;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.counter{
+    text-align:center;
+    color:#aaa;
+    margin-top:15px;
+}
+
+/* ================= FILTER ================= */
+
+.filters{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:25px 0 40px;
+}
+
+.filter-btn{
+    padding:10px 18px;
+    border-radius:20px;
+    background:#151a24;
+    border:1px solid #303746;
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.filter-btn:hover,
+.filter-btn.active{
+    background:#e63946;
+    border-color:#e63946;
+}
+
+/* ================= CARDS ================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#111620;
+    border:1px solid #252d3b;
+    border-radius:18px;
+    overflow:hidden;
+    transition:.4s;
+    position:relative;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color:#e63946;
+    box-shadow:0 15px 45px rgba(0,0,0,.5);
+}
+
+.card-image{
+    height:280px;
+    position:relative;
+    overflow:hidden;
+    background:
+    linear-gradient(135deg,#481016,#111620);
+}
+
+.card-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:.5s;
+}
+
+.card:hover .card-image img{
+    transform:scale(1.08);
+}
+
+.card-image::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        transparent 35%,
+        rgba(0,0,0,.9)
+    );
+}
+
+.card-label{
+    position:absolute;
+    bottom:15px;
+    left:18px;
+    z-index:2;
+    font-size:12px;
+    color:#ff7b84;
+    font-weight:bold;
+}
+
+.card-body{
+    padding:20px;
+}
+
+.card-body h3{
+    font-size:21px;
+    margin-bottom:8px;
+}
+
+.card-body .origin{
+    color:#e63946;
+    font-size:13px;
+    margin-bottom:12px;
+}
+
+.card-body p{
+    color:#aaa;
+    line-height:1.6;
+    font-size:14px;
+}
+
+.read-btn{
+    margin-top:17px;
+    width:100%;
+    padding:11px;
+    border:1px solid #e63946;
+    border-radius:10px;
+    background:transparent;
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.read-btn:hover{
+    background:#e63946;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.85);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:2000;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:850px;
+    max-height:90vh;
+    overflow:auto;
+    background:#10151f;
+    border:1px solid #303746;
+    border-radius:20px;
+    position:relative;
+    animation:popup .3s ease;
+}
+
+@keyframes popup{
+    from{
+        transform:scale(.85);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.modal-image{
+    height:350px;
+}
+
+.modal-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.modal-content{
+    padding:30px;
+}
+
+.modal-content h2{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.modal-content .modal-origin{
+    color:#e63946;
+    margin-bottom:20px;
+}
+
+.modal-content p{
+    color:#ccc;
+    line-height:1.8;
+}
+
+.close{
+    position:absolute;
+    right:20px;
+    top:15px;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:none;
+    background:rgba(0,0,0,.7);
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+    z-index:5;
+}
+
+/* ================= LOADING ================= */
+
+.loading{
+    text-align:center;
+    padding:70px 20px;
+    color:#aaa;
+}
+
+.spinner{
+    width:45px;
+    height:45px;
+    border:4px solid #333;
+    border-top-color:#e63946;
+    border-radius:50%;
+    margin:0 auto 20px;
+    animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+    to{transform:rotate(360deg)}
+}
+
+/* ================= ABOUT ================= */
+
+.about{
+    text-align:center;
+    max-width:850px;
+}
+
+.about p{
+    color:#aaa;
+    line-height:1.8;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    text-align:center;
+    padding:40px 20px;
+    border-top:1px solid #222;
+    color:#777;
+}
+
+footer span{
+    color:#e63946;
+}
+
+
+/* ================= KISAH PAHLAWAN ================= */
+
+.story-loading{
+    text-align:center;
+    padding:30px 10px;
+    color:#aaa;
+}
+
+.story-loading .spinner{
+    width:35px;
+    height:35px;
+    margin-bottom:15px;
+}
+
+.story-heading{
+    display:inline-block;
+    margin-bottom:18px;
+    padding:8px 14px;
+    border-radius:20px;
+    background:rgba(230,57,70,.12);
+    color:#ff7b84;
+    font-weight:bold;
+}
+
+.modal-content p{
+    text-align:justify;
+}
+
+.story-source{
+    margin-top:25px;
+    padding:14px;
+    border-left:3px solid #e63946;
+    background:#151a24;
+    color:#888;
+    font-size:12px;
+    line-height:1.6;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:700px){
+
+    nav a{
+        margin-left:10px;
+        font-size:13px;
+    }
+
+    .hero h1{
+        font-size:43px;
+    }
+
+    .search-box{
+        flex-direction:column;
+    }
+
+    .search-box button{
+        padding:14px;
+    }
+
+    .modal-image{
+        height:250px;
+    }
+
+    .modal-content h2{
+        font-size:25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+    <div class="nav-container">
+
+        <div class="logo">
+            🇮🇩 JEJAK<span>PAHLAWAN</span>
+        </div>
+
+        <div>
+            <a href="#home">Home</a>
+            <a href="#pahlawan">Pahlawan</a>
+            <a href="#tentang">Tentang</a>
+        </div>
+
+    </div>
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<header class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="flag">🇮🇩</div>
+
+        <h1>
+            JEJAK <span>PAHLAWAN</span>
+            INDONESIA
+        </h1>
+
+        <p>
+            Ensiklopedia digital untuk mengenal tokoh-tokoh
+            yang berjasa dalam perjalanan sejarah Indonesia.
+            Cari nama pahlawan, baca kisah perjuangannya,
+            dan kenali warisan yang mereka tinggalkan.
+        </p>
+
+        <a href="#pahlawan" class="btn">
+            Jelajahi Pahlawan →
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- ================= PAHLAWAN ================= -->
+
+<section id="pahlawan">
+
+    <div class="section-title">
+
+        <h2>🇮🇩 Pahlawan Nasional</h2>
+
+        <p>
+            Cari dan pelajari kisah para Pahlawan Nasional Indonesia.
+        </p>
+
+    </div>
+
+
+    <div class="search-area">
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="🔎 Cari nama pahlawan..."
+            >
+
+            <button onclick="searchHero()">
+                CARI
+            </button>
+
+        </div>
+
+        <div class="counter" id="counter">
+            Memuat data pahlawan...
+        </div>
+
+    </div>
+
+
+    <div class="filters">
+
+        <button
+            class="filter-btn active"
+            onclick="filterRegion('all',this)">
+            Semua
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterRegion('Sumatera',this)">
+            Sumatera
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterRegion('Jawa',this)">
+            Jawa
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterRegion('Kalimantan',this)">
+            Kalimantan
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterRegion('Sulawesi',this)">
+            Sulawesi
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterRegion('Bali',this)">
+            Bali
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterRegion('Maluku',this)">
+            Maluku
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterRegion('Papua',this)">
+            Papua
+        </button>
+
+    </div>
+
+
+    <div id="loading" class="loading">
+
+        <div class="spinner"></div>
+
+        <p>
+            Sedang mengambil data Pahlawan Nasional...
+        </p>
+
+    </div>
+
+
+    <div class="grid" id="heroGrid"></div>
+
+</section>
+
+
+<!-- ================= TENTANG ================= -->
+
+<section id="tentang">
+
+    <div class="about">
+
+        <div class="section-title">
+
+            <h2>Tentang Website</h2>
+
+        </div>
+
+        <p>
+            Website <b>Jejak Pahlawan Indonesia</b> dibuat
+            sebagai media pembelajaran digital untuk mengenal
+            sejarah dan perjuangan tokoh-tokoh bangsa Indonesia.
+        </p>
+
+        <br>
+
+        <p>
+            Website ini dibuat menggunakan teknologi dasar
+            pengembangan web yaitu <b>HTML, CSS, dan JavaScript</b>.
+            Fitur pencarian dan kartu pahlawan dibuat secara
+            dinamis sehingga data dapat ditampilkan dengan lebih
+            mudah.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        🇮🇩 Jejak Pahlawan Indonesia
+    </p>
+
+    <p>
+        Dibuat untuk pembelajaran
+        <span>TKJ</span>
+    </p>
+
+</footer>
+
+
+<!-- ================= MODAL ================= -->
+
+<div class="modal" id="heroModal">
+
+    <div class="modal-box">
+
+        <button class="close" onclick="closeModal()">
+            ×
+        </button>
+
+        <div class="modal-image">
+
+            <img
+                id="modalImage"
+                src=""
+                alt="Foto Pahlawan"
+            >
+
+        </div>
+
+        <div class="modal-content">
+
+            <h2 id="modalName"></h2>
+
+            <div
+                class="modal-origin"
+                id="modalOrigin">
+            </div>
+
+            <p id="modalStory"></p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   JEJAK PAHLAWAN INDONESIA
+   Data pahlawan : API publik
+   Kisah + foto  : Wikipedia/Wikimedia sebagai sumber cadangan
+   ========================================================= */
+
+const API =
+"https://indonesia-public-static-api.vercel.app/api/heroes";
+
+const WIKI_API =
+"https://id.wikipedia.org/api/rest_v1/page/summary/";
+
+let heroes = [];
+let currentRegion = "all";
+let currentData = [];
+
+
+/* =========================================================
+   FUNGSI AMAN UNTUK TEKS HTML
+   ========================================================= */
+
+function escapeHTML(value){
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+
+/* =========================================================
+   AMBIL DATA WIKIPEDIA
+   Setiap pahlawan akan memiliki kisah dan foto jika
+   halaman Wikipedia Indonesia tersedia.
+   ========================================================= */
+
+async function getWikiData(name){
+
+    try{
+
+        const url =
+            WIKI_API +
+            encodeURIComponent(name.replace(/\s+/g,"_"));
+
+        const response = await fetch(url);
+
+        if(!response.ok){
+            throw new Error("Halaman Wikipedia tidak ditemukan");
+        }
+
+        const data = await response.json();
+
+        return {
+            title: data.title || name,
+            story: data.extract || "",
+            image:
+                data.thumbnail?.source ||
+                data.originalimage?.source ||
+                ""
+        };
+
+    }catch(error){
+
+        return {
+            title:name,
+            story:"",
+            image:""
+        };
+
+    }
+
+}
+
+
+/* =========================================================
+   NORMALISASI DATA
+   ========================================================= */
+
+function normalizeHero(hero){
+
+    const name =
+        hero.nama ||
+        hero.name ||
+        hero.nama_pahlawan ||
+        "Pahlawan Indonesia";
+
+    const origin =
+        hero.asal ||
+        hero.origin ||
+        hero.daerah ||
+        "Indonesia";
+
+    const apiStory =
+        hero.history ||
+        hero.story ||
+        hero.description ||
+        hero.kisah ||
+        "";
+
+    const apiImage =
+        hero.img ||
+        hero.image ||
+        hero.photo ||
+        hero.foto ||
+        "";
+
+    return {
+        ...hero,
+        displayName:name,
+        displayOrigin:origin,
+        displayStory:apiStory,
+        displayImage:apiImage,
+        wikiLoaded:false
+    };
+
+}
+
+
+/* =========================================================
+   LOAD DATA PAHLAWAN
+   ========================================================= */
+
+async function loadHeroes(){
+
+    try{
+
+        const response = await fetch(API);
+
+        if(!response.ok){
+            throw new Error("API gagal dimuat");
+        }
+
+        const rawData = await response.json();
+
+        if(!Array.isArray(rawData)){
+            throw new Error("Format data tidak sesuai");
+        }
+
+        heroes = rawData.map(normalizeHero);
+
+        document.getElementById("loading").style.display =
+            "none";
+
+        renderHeroes(heroes);
+
+        /*
+         * Foto Wikipedia dimuat bertahap agar halaman tetap cepat.
+         */
+        enrichImagesInBackground();
+
+    }catch(error){
+
+        document.getElementById("loading").innerHTML = `
+
+            <h3>⚠️ Data belum dapat dimuat</h3>
+
+            <p>
+                Periksa koneksi internet kemudian
+                refresh halaman.
+            </p>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   MUAT FOTO WIKIPEDIA DI LATAR
+   ========================================================= */
+
+async function enrichImagesInBackground(){
+
+    /*
+     * Tidak mengambil semua request sekaligus.
+     * Lima pahlawan diproses setiap gelombang.
+     */
+
+    for(let i=0; i<heroes.length; i+=5){
+
+        const batch = heroes.slice(i,i+5);
+
+        await Promise.all(
+            batch.map(async(hero)=>{
+
+                if(hero.displayImage){
+                    return;
+                }
+
+                const wiki =
+                    await getWikiData(hero.displayName);
+
+                if(wiki.image){
+                    hero.displayImage = wiki.image;
+                }
+
+                hero.wikiImageLoaded = true;
+
+            })
+        );
+
+        /*
+         * Refresh tampilan setelah setiap gelombang.
+         */
+        renderHeroes(getFilteredHeroes());
+
+    }
+
+}
+
+
+/* =========================================================
+   RENDER KARTU
+   ========================================================= */
+
+function renderHeroes(data){
+
+    const grid =
+        document.getElementById("heroGrid");
+
+    grid.innerHTML = "";
+
+    currentData = data;
+
+    document.getElementById("counter").innerText =
+        `${data.length} pahlawan ditemukan`;
+
+
+    if(data.length === 0){
+
+        grid.innerHTML = `
+
+            <div class="loading">
+
+                <h3>
+                    😔 Pahlawan tidak ditemukan
+                </h3>
+
+                <p>
+                    Coba gunakan nama atau daerah lain.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    data.forEach((hero,index)=>{
+
+        const name =
+            escapeHTML(hero.displayName);
+
+        const origin =
+            escapeHTML(hero.displayOrigin);
+
+        const story =
+            hero.displayStory ||
+            "Kisah sedang disiapkan dari sumber sejarah.";
+
+        const image =
+            hero.displayImage ||
+            "https://placehold.co/800x600/151a24/ffffff?text=" +
+            encodeURIComponent(hero.displayName);
+
+
+        const card =
+            document.createElement("div");
+
+        card.className = "card";
+
+
+        card.innerHTML = `
+
+            <div class="card-image">
+
+                <img
+                    src="${escapeHTML(image)}"
+                    alt="Foto ${name}"
+                    loading="lazy"
+                    onerror="
+                        this.onerror=null;
+                        this.src='https://placehold.co/800x600/151a24/ffffff?text=${encodeURIComponent(hero.displayName)}'
+                    "
+                >
+
+                <div class="card-label">
+                    PAHLAWAN NASIONAL
+                </div>
+
+            </div>
+
+
+            <div class="card-body">
+
+                <h3>${name}</h3>
+
+                <div class="origin">
+                    📍 ${origin}
+                </div>
+
+                <p>
+                    ${escapeHTML(shorten(story,130))}
+                </p>
+
+                <button
+                    class="read-btn"
+                    onclick="openHero(${index})">
+
+                    📖 Baca Kisah Lengkap
+
+                </button>
+
+            </div>
+
+        `;
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================================
+   FILTER DATA
+   ========================================================= */
+
+function getFilteredHeroes(){
+
+    const keyword =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    return heroes.filter(hero=>{
+
+        const name =
+            hero.displayName.toLowerCase();
+
+        const origin =
+            hero.displayOrigin.toLowerCase();
+
+        const story =
+            (
+                hero.displayStory ||
+                ""
+            ).toLowerCase();
+
+
+        const matchesSearch =
+            !keyword ||
+            name.includes(keyword) ||
+            origin.includes(keyword) ||
+            story.includes(keyword);
+
+
+        const matchesRegion =
+            currentRegion === "all" ||
+            origin.includes(
+                currentRegion.toLowerCase()
+            );
+
+
+        return matchesSearch && matchesRegion;
+
+    });
+
+}
+
+
+/* =========================================================
+   POTONG CERITA DI KARTU
+   ========================================================= */
+
+function shorten(text,length){
+
+    if(!text){
+        return "Klik untuk membaca kisah pahlawan.";
+    }
+
+    const clean =
+        String(text).replace(/\s+/g," ").trim();
+
+    return clean.length > length
+        ? clean.substring(0,length) + "..."
+        : clean;
+
+}
+
+
+/* =========================================================
+   BUKA KISAH PAHLAWAN
+   ========================================================= */
+
+async function openHero(index){
+
+    const hero = currentData[index];
+
+    if(!hero) return;
+
+
+    const modal =
+        document.getElementById("heroModal");
+
+
+    const modalName =
+        document.getElementById("modalName");
+
+    const modalOrigin =
+        document.getElementById("modalOrigin");
+
+    const modalStory =
+        document.getElementById("modalStory");
+
+    const modalImage =
+        document.getElementById("modalImage");
+
+
+    modal.classList.add("show");
+
+    modalName.innerText =
+        hero.displayName;
+
+    modalOrigin.innerText =
+        "📍 " + hero.displayOrigin;
+
+    modalStory.innerHTML = `
+        <div class="story-loading">
+            <div class="spinner"></div>
+            <p>
+                Sedang mengambil kisah
+                ${escapeHTML(hero.displayName)}...
+            </p>
+        </div>
+    `;
+
+
+    modalImage.src =
+        hero.displayImage ||
+        "https://placehold.co/1000x700/151a24/ffffff?text=" +
+        encodeURIComponent(hero.displayName);
+
+
+    /*
+     * Jika API belum mempunyai kisah/foto,
+     * ambil dari Wikipedia Indonesia.
+     */
+    const wiki =
+        await getWikiData(hero.displayName);
+
+
+    if(wiki.image){
+
+        hero.displayImage =
+            wiki.image;
+
+        modalImage.src =
+            wiki.image;
+
+    }
+
+
+    let story =
+        hero.displayStory ||
+        wiki.story;
+
+
+    if(!story){
+
+        story =
+            "Informasi kisah untuk tokoh ini belum tersedia "
+            + "pada sumber yang dapat diakses oleh website. "
+            + "Silakan tambahkan biografi dari buku sejarah "
+            + "atau sumber resmi sekolah.";
+
+    }
+
+
+    modalStory.innerHTML = `
+
+        <div class="story-heading">
+            📖 Kisah Perjuangan
+        </div>
+
+        <p>
+            ${escapeHTML(story)}
+        </p>
+
+        <div class="story-source">
+            Sumber informasi: Wikipedia Bahasa Indonesia
+            / data API Pahlawan Nasional.
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   TUTUP MODAL
+   ========================================================= */
+
+function closeModal(){
+
+    document
+        .getElementById("heroModal")
+        .classList.remove("show");
+
+}
+
+
+/* =========================================================
+   PENCARIAN
+   ========================================================= */
+
+function searchHero(){
+
+    renderHeroes(
+        getFilteredHeroes()
+    );
+
+}
+
+
+/* =========================================================
+   PENCARIAN REAL-TIME
+   ========================================================= */
+
+document
+    .getElementById("searchInput")
+    .addEventListener(
+        "input",
+        searchHero
+    );
+
+
+/* =========================================================
+   FILTER WILAYAH
+   ========================================================= */
+
+function filterRegion(region,button){
+
+    currentRegion =
+        region;
+
+
+    document
+        .querySelectorAll(".filter-btn")
+        .forEach(btn=>{
+            btn.classList.remove("active");
+        });
+
+
+    button.classList.add("active");
+
+    searchHero();
+
+}
+
+
+/* =========================================================
+   TUTUP MODAL KLIK DI LUAR
+   ========================================================= */
+
+document
+    .getElementById("heroModal")
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(event.target === this){
+                closeModal();
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   TOMBOL ESC
+   ========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+            closeModal();
+        }
+
+    }
+);
+
+
+/* =========================================================
+   MULAI WEBSITE
+   ========================================================= */
+
+loadHeroes();
+
+</script>
+
+</body>
+</html>
+```
