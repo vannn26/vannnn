@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dunia Sepak Bola - Portal Edukasi & Informasi Sepak Bola</title>
+    <!-- Google Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emeraldDark: '#042f2e',
+                        emeraldMain: '#047857',
+                        emeraldLight: '#10b981',
+                        emeraldSoft: '#ecfdf5',
+                        darkSlate: '#0f172a',
+                        cardDark: '#1e293b'
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Poppins', sans-serif;
+        }
+        .glass-nav {
+            background: rgba(4, 47, 46, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card:hover {
+            border-color: rgba(16, 185, 129, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.25);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #34d399 0%, #10b981 50%, #6ee7b7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-gradient-emerald {
+            background: linear-gradient(135deg, #047857 0%, #064e3b 100%);
+        }
+        .bg-gradient-gold {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #047857;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #10b981;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-emeraldLight selection:text-darkSlate">
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#hero" class="flex items-center space-x-3 group">
+                    <div class="w-11 h-11 rounded-full bg-gradient-emerald flex items-center justify-center text-white shadow-lg shadow-emeraldMain/30 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-football text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold font-heading text-white tracking-wide">FOOTBALL<span class="text-emeraldLight">HUB</span></span>
+                        <span class="block text-[10px] text-emeraldLight uppercase tracking-widest font-semibold">Dunia Sepak Bola</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-6 text-sm font-medium">
+                    <a href="#profil" class="hover:text-emeraldLight transition-colors py-1">Profil</a>
+                    <a href="#sejarah" class="hover:text-emeraldLight transition-colors py-1">Sejarah</a>
+                    <a href="#pemain" class="hover:text-emeraldLight transition-colors py-1">Bintang</a>
+                    <a href="#teknik" class="hover:text-emeraldLight transition-colors py-1">Teknik</a>
+                    <a href="#peraturan" class="hover:text-emeraldLight transition-colors py-1">Peraturan</a>
+                    <a href="#organisasi" class="hover:text-emeraldLight transition-colors py-1">Organisasi</a>
+                    <a href="#motivasi" class="bg-emeraldMain hover:bg-emeraldLight text-white font-semibold px-4 py-2 rounded-lg transition-all shadow-md shadow-emeraldMain/20 hover:shadow-emeraldLight/30">Motivasi</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none" aria-label="Buka Menu Navigation">
+                        <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-slate-900/95 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#profil" class="mobile-link block px-3 py-2 rounded-md text-base font-medium hover:bg-emeraldMain/20 hover:text-emeraldLight">Profil Developer</a>
+            <a href="#sejarah" class="mobile-link block px-3 py-2 rounded-md text-base font-medium hover:bg-emeraldMain/20 hover:text-emeraldLight">Sejarah</a>
+            <a href="#pemain" class="mobile-link block px-3 py-2 rounded-md text-base font-medium hover:bg-emeraldMain/20 hover:text-emeraldLight">Pemain Bintang</a>
+            <a href="#teknik" class="mobile-link block px-3 py-2 rounded-md text-base font-medium hover:bg-emeraldMain/20 hover:text-emeraldLight">Teknik Dasar</a>
+            <a href="#peraturan" class="mobile-link block px-3 py-2 rounded-md text-base font-medium hover:bg-emeraldMain/20 hover:text-emeraldLight">Peraturan Utama</a>
+            <a href="#organisasi" class="mobile-link block px-3 py-2 rounded-md text-base font-medium hover:bg-emeraldMain/20 hover:text-emeraldLight">Organisasi</a>
+            <a href="#motivasi" class="mobile-link block px-3 py-2 rounded-md text-base font-medium bg-emeraldMain text-white text-center">Kesimpulan & Motivasi</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 overflow-hidden">
+        <!-- Background Grid Effect & Glow -->
+        <div class="absolute inset-0 bg-[radial-gradient(#047857_1px,transparent_1px)] [background-size:24px_24px] opacity-20"></div>
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-emeraldMain/30 rounded-full filter blur-[120px] pointer-events-none"></div>
+        <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-emeraldLight/20 rounded-full filter blur-[120px] pointer-events-none"></div>
+
+        <div class="relative max-w-5xl mx-auto text-center z-10">
+            <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-emeraldMain/20 border border-emeraldLight/30 text-emeraldLight text-sm font-semibold mb-6 animate-pulse">
+                <i class="fa-solid fa-trophy"></i>
+                <span>Ensiklopedia & Panduan Sepak Bola Lengkap</span>
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold font-heading text-white tracking-tight leading-tight mb-6">
+                Gelora, Seni & Strategi di <span class="text-gradient">Lapangan Hijau</span>
+            </h1>
+
+            <p class="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto mb-10 font-normal leading-relaxed">
+                Menelusuri keindahan olahraga paling populer di jagat raya. Dari sejarah megah, legenda dunia, hingga teknik presisi dan disiplin tinggi yang menyatukan miliaran jiwa.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#pemain" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-emerald text-white font-semibold shadow-lg shadow-emeraldMain/40 hover:scale-105 transition-all flex items-center justify-center space-x-2">
+                    <span>Eksplorasi Pemain Bintang</span>
+                    <i class="fa-solid fa-arrow-right text-sm"></i>
+                </a>
+                <a href="#teknik" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card text-white font-semibold hover:bg-slate-800 hover:border-emeraldLight/50 transition-all flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-futbol text-emeraldLight"></i>
+                    <span>Pelajari Teknik Dasar</span>
+                </a>
+            </div>
+
+            <!-- Quick Stats Bar -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <div class="glass-card p-4 rounded-xl text-center">
+                    <div class="text-2xl sm:text-3xl font-bold font-heading text-emeraldLight">2x45'</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider mt-1">Durasi Standar</div>
+                </div>
+                <div class="glass-card p-4 rounded-xl text-center">
+                    <div class="text-2xl sm:text-3xl font-bold font-heading text-emeraldLight">11</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider mt-1">Pemain Utama / Tim</div>
+                </div>
+                <div class="glass-card p-4 rounded-xl text-center">
+                    <div class="text-2xl sm:text-3xl font-bold font-heading text-emeraldLight">211</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider mt-1">Anggota FIFA</div>
+                </div>
+                <div class="glass-card p-4 rounded-xl text-center">
+                    <div class="text-2xl sm:text-3xl font-bold font-heading text-emeraldLight">3.5B+</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider mt-1">Penggemar Dunia</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEVELOPER PROFILE SECTION -->
+    <section id="profil" class="py-20 px-4 sm:px-6 lg:px-8 relative bg-slate-900/50">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white">Profil <span class="text-gradient">Developer</span></h2>
+                <div class="w-20 h-1 bg-emeraldMain mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 sm:p-10 relative overflow-hidden shadow-2xl">
+                <!-- Decorative Badge Corner -->
+                <div class="absolute -top-12 -right-12 w-32 h-32 bg-emeraldMain/20 rounded-full filter blur-xl"></div>
+                
+                <div class="flex flex-col md:flex-row items-center gap-8 relative z-10">
+                    <!-- Avatar / Badge Icon -->
+                    <div class="relative group">
+                        <div class="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl bg-gradient-to-tr from-emeraldMain to-slate-800 p-1 shadow-xl">
+                            <div class="w-full h-full bg-slate-900 rounded-[14px] flex flex-col items-center justify-center p-4 text-center">
+                                <i class="fa-solid fa-user-shield text-5xl text-emeraldLight mb-2"></i>
+                                <span class="text-xs font-bold uppercase tracking-wider text-slate-300">TKJ Specialist</span>
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-3 -right-3 bg-gradient-gold text-slate-950 font-bold text-xs px-3 py-1 rounded-full shadow-lg border border-yellow-300 flex items-center space-x-1">
+                            <i class="fa-solid fa-crown text-slate-950"></i>
+                            <span>Ketua Rohis</span>
+                        </div>
+                    </div>
+
+                    <!-- Details -->
+                    <div class="flex-1 text-center md:text-left space-y-4">
+                        <div>
+                            <span class="inline-block px-3 py-1 rounded-md bg-emeraldMain/20 text-emeraldLight text-xs font-semibold tracking-wider uppercase mb-2">
+                                Web Developer & Creator
+                            </span>
+                            <h3 class="text-2xl sm:text-3xl font-bold font-heading text-white">Fauzan Prabu Wijaya</h3>
+                            <p class="text-emeraldLight font-medium">Siswa & Pemimpin Muda</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-300 pt-2">
+                            <div class="bg-slate-800/60 p-3 rounded-lg border border-slate-700/50 flex items-center space-x-3">
+                                <i class="fa-solid fa-mosque text-emeraldLight text-lg w-6"></i>
+                                <div>
+                                    <span class="block text-xs text-slate-400">Amanah / Peran</span>
+                                    <span class="font-semibold text-white">Ketua Rohis 2026</span>
+                                </div>
+                            </div>
+                            <div class="bg-slate-800/60 p-3 rounded-lg border border-slate-700/50 flex items-center space-x-3">
+                                <i class="fa-solid fa-laptop-code text-emeraldLight text-lg w-6"></i>
+                                <div>
+                                    <span class="block text-xs text-slate-400">Kelas</span>
+                                    <span class="font-semibold text-white">XI TKJ 1</span>
+                                </div>
+                            </div>
+                            <div class="bg-slate-800/60 p-3 rounded-lg border border-slate-700/50 sm:col-span-2 flex items-center space-x-3">
+                                <i class="fa-solid fa-school text-emeraldLight text-lg w-6"></i>
+                                <div>
+                                    <span class="block text-xs text-slate-400">Instansi Sekolah</span>
+                                    <span class="font-semibold text-white">SMKN 9 Kabupaten Tangerang, Banten</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="text-xs sm:text-sm text-slate-400 italic pt-2">
+                            "Mengkombinasikan kecanggihan Teknologi Informasi dengan nilai-nilai kepemimpinan religius dan semangat kedisiplinan olahraga."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEJARAH SECTION -->
+    <section id="sejarah" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white">Sejarah <span class="text-gradient">Sepak Bola</span></h2>
+            <p class="text-slate-400 mt-2 max-w-2xl mx-auto">Evolusi dari permainan tradisional kuno hingga menjadi olahraga profesional paling populer di seluruh dunia.</p>
+            <div class="w-20 h-1 bg-emeraldMain mx-auto mt-3 rounded-full"></div>
+        </div>
+
+        <div class="relative">
+            <!-- Central Line for Timeline -->
+            <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-emeraldMain/30"></div>
+
+            <div class="space-y-12">
+                <!-- Timeline Item 1 -->
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="flex-1 md:text-right md:pr-10 mb-4 md:mb-0">
+                        <span class="inline-block px-3 py-1 rounded bg-emeraldMain/20 text-emeraldLight font-bold text-sm mb-2">Abad ke-2 - 3 SM</span>
+                        <h3 class="text-xl font-bold text-white mb-2">Cuju (Tiongkok Kuno)</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Bentuk awal permainan mirip sepak bola pertama kali dicatat pada masa Dinasti Han di Tiongkok yang disebut <em>Cuju</em>. Pemain menendang bola kulit bersabut ke dalam jaring kecil tanpa menggunakan tangan.
+                        </p>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-emeraldMain border-4 border-slate-900 flex items-center justify-center text-white font-bold z-10 my-2 md:my-0 shadow-lg shadow-emeraldMain/50">
+                        <i class="fa-solid fa-scroll text-sm"></i>
+                    </div>
+                    <div class="flex-1 md:pl-10"></div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="flex-1 md:pr-10 order-1 md:order-1"></div>
+                    <div class="w-12 h-12 rounded-full bg-emeraldMain border-4 border-slate-900 flex items-center justify-center text-white font-bold z-10 my-2 md:my-0 shadow-lg shadow-emeraldMain/50 order-2 md:order-2">
+                        <i class="fa-solid fa-shield-halved text-sm"></i>
+                    </div>
+                    <div class="flex-1 md:pl-10 mb-4 md:mb-0 order-3 md:order-3">
+                        <span class="inline-block px-3 py-1 rounded bg-emeraldMain/20 text-emeraldLight font-bold text-sm mb-2">Era Yunani & Romawi</span>
+                        <h3 class="text-xl font-bold text-white mb-2">Episkyros & Harpastum</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Masyarakat Yunani Kuno mengenal <em>Episkyros</em> dan bangsa Romawi mengembangkan <em>Harpastum</em>. Permainan ini mengandalkan fisik dan strategi kelompok untuk menguasai bola di lapangan terbatas.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="flex-1 md:text-right md:pr-10 mb-4 md:mb-0">
+                        <span class="inline-block px-3 py-1 rounded bg-emeraldMain/20 text-emeraldLight font-bold text-sm mb-2">Tahun 1863</span>
+                        <h3 class="text-xl font-bold text-white mb-2">Kelahiran Sepak Bola Modern (Inggris)</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Asosiasi Sepak Bola (The Football Association / FA) didirikan di London, Inggris. Aturan baku diciptakan untuk memisahkan sepak bola dengan rugby secara resmi.
+                        </p>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-emeraldMain border-4 border-slate-900 flex items-center justify-center text-white font-bold z-10 my-2 md:my-0 shadow-lg shadow-emeraldMain/50">
+                        <i class="fa-solid fa-flag text-sm"></i>
+                    </div>
+                    <div class="flex-1 md:pl-10"></div>
+                </div>
+
+                <!-- Timeline Item 4 -->
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="flex-1 md:pr-10 order-1 md:order-1"></div>
+                    <div class="w-12 h-12 rounded-full bg-emeraldMain border-4 border-slate-900 flex items-center justify-center text-white font-bold z-10 my-2 md:my-0 shadow-lg shadow-emeraldMain/50 order-2 md:order-2">
+                        <i class="fa-solid fa-earth-americas text-sm"></i>
+                    </div>
+                    <div class="flex-1 md:pl-10 mb-4 md:mb-0 order-3 md:order-3">
+                        <span class="inline-block px-3 py-1 rounded bg-emeraldMain/20 text-emeraldLight font-bold text-sm mb-2">Tahun 1904 & 1930</span>
+                        <h3 class="text-xl font-bold text-white mb-2">Pendirian FIFA & Piala Dunia Pertama</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            FIFA dibentuk di Paris pada 1904. Pada tahun 1930, Piala Dunia FIFA pertama diselenggarakan di Uruguay, menandai babak baru sepak bola sebagai olahraga global skala raksasa.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PEMAIN BINTANG SHOWCASE SECTION -->
+    <section id="pemain" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white">Bintang <span class="text-gradient">Sepak Bola Dunia</span></h2>
+                <p class="text-slate-400 mt-2">Ikon legendaris dan talenta terbaik yang menginspirasi jutaan penggemar.</p>
+                <div class="w-20 h-1 bg-emeraldMain mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <!-- Player Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 mb-10">
+                <button class="player-filter-btn px-4 py-2 rounded-lg bg-emeraldMain text-white font-medium text-sm transition-all" data-filter="all">Semua Pemain</button>
+                <button class="player-filter-btn px-4 py-2 rounded-lg glass-card hover:bg-slate-800 text-slate-300 font-medium text-sm transition-all" data-filter="Penyerang">Penyerang / Forward</button>
+                <button class="player-filter-btn px-4 py-2 rounded-lg glass-card hover:bg-slate-800 text-slate-300 font-medium text-sm transition-all" data-filter="Gelandang">Gelandang / Midfielder</button>
+            </div>
+
+            <!-- Players Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Lionel Messi -->
+                <div class="player-card glass-card rounded-2xl overflow-hidden group transition-all duration-300" data-category="Penyerang">
+                    <div class="p-6 relative">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 rounded-full bg-yellow-500/20 text-yellow-400 font-bold text-xs border border-yellow-500/30">
+                                <i class="fa-solid fa-star text-xs mr-1"></i>8x Ballon d'Or
+                            </span>
+                            <span class="text-4xl font-extrabold text-slate-700 font-heading">#10</span>
+                        </div>
+                        <div class="w-20 h-20 rounded-full bg-gradient-emerald p-1 mb-4 mx-auto shadow-lg">
+                            <div class="w-full h-full bg-slate-800 rounded-full flex items-center justify-center text-3xl font-bold text-emeraldLight">
+                                LM
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-center text-white font-heading">Lionel Messi</h3>
+                        <p class="text-center text-emeraldLight text-sm font-semibold mb-4">Penyerang / Winger (Inter Miami)</p>
+                        
+                        <div class="space-y-2 text-xs text-slate-300 border-t border-slate-700/50 pt-4">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Negara:</span>
+                                <span class="font-semibold text-white">Argentina 🇦🇷</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Keahlian Utama:</span>
+                                <span class="font-semibold text-emeraldLight">Dribbling Magic, Playmaking</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Gaya Main:</span>
+                                <span class="font-semibold text-white">Visi Superb & Finis Akurat</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cristiano Ronaldo -->
+                <div class="player-card glass-card rounded-2xl overflow-hidden group transition-all duration-300" data-category="Penyerang">
+                    <div class="p-6 relative">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 rounded-full bg-yellow-500/20 text-yellow-400 font-bold text-xs border border-yellow-500/30">
+                                <i class="fa-solid fa-star text-xs mr-1"></i>5x Ballon d'Or
+                            </span>
+                            <span class="text-4xl font-extrabold text-slate-700 font-heading">#7</span>
+                        </div>
+                        <div class="w-20 h-20 rounded-full bg-gradient-emerald p-1 mb-4 mx-auto shadow-lg">
+                            <div class="w-full h-full bg-slate-800 rounded-full flex items-center justify-center text-3xl font-bold text-emeraldLight">
+                                CR
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-center text-white font-heading">Cristiano Ronaldo</h3>
+                        <p class="text-center text-emeraldLight text-sm font-semibold mb-4">Striker / Forward (Al-Nassr)</p>
+                        
+                        <div class="space-y-2 text-xs text-slate-300 border-t border-slate-700/50 pt-4">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Negara:</span>
+                                <span class="font-semibold text-white">Portugal 🇵🇹</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Keahlian Utama:</span>
+                                <span class="font-semibold text-emeraldLight">Heading, Shooting, Mentalitas</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Gaya Main:</span>
+                                <span class="font-semibold text-white">Pencetak Gol Ulung (All-Time Leader)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Neymar Jr -->
+                <div class="player-card glass-card rounded-2xl overflow-hidden group transition-all duration-300" data-category="Penyerang">
+                    <div class="p-6 relative">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 rounded-full bg-emeraldMain/20 text-emeraldLight font-bold text-xs border border-emeraldMain/30">
+                                Samba Maestro
+                            </span>
+                            <span class="text-4xl font-extrabold text-slate-700 font-heading">#10</span>
+                        </div>
+                        <div class="w-20 h-20 rounded-full bg-gradient-emerald p-1 mb-4 mx-auto shadow-lg">
+                            <div class="w-full h-full bg-slate-800 rounded-full flex items-center justify-center text-3xl font-bold text-emeraldLight">
+                                NJ
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-center text-white font-heading">Neymar Jr.</h3>
+                        <p class="text-center text-emeraldLight text-sm font-semibold mb-4">Winger / Playmaker (Al-Hilal)</p>
+                        
+                        <div class="space-y-2 text-xs text-slate-300 border-t border-slate-700/50 pt-4">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Negara:</span>
+                                <span class="font-semibold text-white">Brasil 🇧🇷</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Keahlian Utama:</span>
+                                <span class="font-semibold text-emeraldLight">Flair, Skill Trik, Dribble</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Gaya Main:</span>
+                                <span class="font-semibold text-white">Kreativitas Tinggi & Hiburan</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kylian Mbappe -->
+                <div class="player-card glass-card rounded-2xl overflow-hidden group transition-all duration-300" data-category="Penyerang">
+                    <div class="p-6 relative">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 rounded-full bg-emeraldMain/20 text-emeraldLight font-bold text-xs border border-emeraldMain/30">
+                                World Cup Champion
+                            </span>
+                            <span class="text-4xl font-extrabold text-slate-700 font-heading">#9</span>
+                        </div>
+                        <div class="w-20 h-20 rounded-full bg-gradient-emerald p-1 mb-4 mx-auto shadow-lg">
+                            <div class="w-full h-full bg-slate-800 rounded-full flex items-center justify-center text-3xl font-bold text-emeraldLight">
+                                KM
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-center text-white font-heading">Kylian Mbappé</h3>
+                        <p class="text-center text-emeraldLight text-sm font-semibold mb-4">Forward / Winger (Real Madrid)</p>
+                        
+                        <div class="space-y-2 text-xs text-slate-300 border-t border-slate-700/50 pt-4">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Negara:</span>
+                                <span class="font-semibold text-white">Prancis 🇫🇷</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Keahlian Utama:</span>
+                                <span class="font-semibold text-emeraldLight">Pace Eksplosif, Counter-Attack</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Gaya Main:</span>
+                                <span class="font-semibold text-white">Kecepatan Kilat & Akselerasi</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Erling Haaland -->
+                <div class="player-card glass-card rounded-2xl overflow-hidden group transition-all duration-300" data-category="Penyerang">
+                    <div class="p-6 relative">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 rounded-full bg-emeraldMain/20 text-emeraldLight font-bold text-xs border border-emeraldMain/30">
+                                Goal Machine
+                            </span>
+                            <span class="text-4xl font-extrabold text-slate-700 font-heading">#9</span>
+                        </div>
+                        <div class="w-20 h-20 rounded-full bg-gradient-emerald p-1 mb-4 mx-auto shadow-lg">
+                            <div class="w-full h-full bg-slate-800 rounded-full flex items-center justify-center text-3xl font-bold text-emeraldLight">
+                                EH
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-center text-white font-heading">Erling Haaland</h3>
+                        <p class="text-center text-emeraldLight text-sm font-semibold mb-4">Striker murni (Manchester City)</p>
+                        
+                        <div class="space-y-2 text-xs text-slate-300 border-t border-slate-700/50 pt-4">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Negara:</span>
+                                <span class="font-semibold text-white">Norwegia 🇳🇴</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Keahlian Utama:</span>
+                                <span class="font-semibold text-emeraldLight">Finishing, Fisik Kuat, Positioning</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Gaya Main:</span>
+                                <span class="font-semibold text-white">Predator Kotak Penalti</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jude Bellingham -->
+                <div class="player-card glass-card rounded-2xl overflow-hidden group transition-all duration-300" data-category="Gelandang">
+                    <div class="p-6 relative">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 rounded-full bg-emeraldMain/20 text-emeraldLight font-bold text-xs border border-emeraldMain/30">
+                                Golden Boy
+                            </span>
+                            <span class="text-4xl font-extrabold text-slate-700 font-heading">#5</span>
+                        </div>
+                        <div class="w-20 h-20 rounded-full bg-gradient-emerald p-1 mb-4 mx-auto shadow-lg">
+                            <div class="w-full h-full bg-slate-800 rounded-full flex items-center justify-center text-3xl font-bold text-emeraldLight">
+                                JB
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-center text-white font-heading">Jude Bellingham</h3>
+                        <p class="text-center text-emeraldLight text-sm font-semibold mb-4">Attacking Midfielder (Real Madrid)</p>
+                        
+                        <div class="space-y-2 text-xs text-slate-300 border-t border-slate-700/50 pt-4">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Negara:</span>
+                                <span class="font-semibold text-white">Inggris 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Keahlian Utama:</span>
+                                <span class="font-semibold text-emeraldLight">Box-to-Box, Late Runs, Stamina</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Gaya Main:</span>
+                                <span class="font-semibold text-white">Gelandang Komplit & Produktif</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kevin De Bruyne -->
+                <div class="player-card glass-card rounded-2xl overflow-hidden group transition-all duration-300" data-category="Gelandang">
+                    <div class="p-6 relative">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 rounded-full bg-emeraldMain/20 text-emeraldLight font-bold text-xs border border-emeraldMain/30">
+                                Assist King
+                            </span>
+                            <span class="text-4xl font-extrabold text-slate-700 font-heading">#17</span>
+                        </div>
+                        <div class="w-20 h-20 rounded-full bg-gradient-emerald p-1 mb-4 mx-auto shadow-lg">
+                            <div class="w-full h-full bg-slate-800 rounded-full flex items-center justify-center text-3xl font-bold text-emeraldLight">
+                                KDB
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-center text-white font-heading">Kevin De Bruyne</h3>
+                        <p class="text-center text-emeraldLight text-sm font-semibold mb-4">Central Midfielder (Manchester City)</p>
+                        
+                        <div class="space-y-2 text-xs text-slate-300 border-t border-slate-700/50 pt-4">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Negara:</span>
+                                <span class="font-semibold text-white">Belgia 🇧🇪</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Keahlian Utama:</span>
+                                <span class="font-semibold text-emeraldLight">Passing Presisi, Long Shot, Visi</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Gaya Main:</span>
+                                <span class="font-semibold text-white">Master Kreator Peluang</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TEKNIK DASAR SECTION -->
+    <section id="teknik" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white">Teknik Dasar <span class="text-gradient">Permainan</span></h2>
+            <p class="text-slate-400 mt-2">Pondasi utama yang wajib dikuasai setiap pesepak bola profesional.</p>
+            <div class="w-20 h-1 bg-emeraldMain mx-auto mt-3 rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dribbling -->
+            <div class="glass-card p-6 rounded-2xl relative group hover:-translate-y-2 transition-transform duration-300">
+                <div class="w-14 h-14 rounded-xl bg-emeraldMain/20 border border-emeraldMain/40 flex items-center justify-center text-emeraldLight text-2xl mb-4 group-hover:bg-emeraldMain group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-person-running"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 font-heading">1. Dribbling (Mengiring Bola)</h3>
+                <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                    Kemampuan menggerakkan bola dengan kontrol dekat menggunakan kaki sambil bergerak melewati lawan atau membuka ruang.
+                </p>
+                <div class="bg-slate-800/80 p-3 rounded-lg text-xs text-emeraldLight">
+                    <span class="font-bold block text-white mb-1"><i class="fa-solid fa-lightbulb text-yellow-400 mr-1"></i> Pro Tip:</span>
+                    Jaga pandangan mata tetap terangkat (head up) agar bisa melihat posisi kawan dan lawan.
+                </div>
+            </div>
+
+            <!-- Passing -->
+            <div class="glass-card p-6 rounded-2xl relative group hover:-translate-y-2 transition-transform duration-300">
+                <div class="w-14 h-14 rounded-xl bg-emeraldMain/20 border border-emeraldMain/40 flex items-center justify-center text-emeraldLight text-2xl mb-4 group-hover:bg-emeraldMain group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-share font-bold"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 font-heading">2. Passing (Mengoper Bola)</h3>
+                <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                    Seni memindahkan bola dari satu pemain ke pemain lain. Menggunakan kaki bagian dalam untuk operan pendek dan punggung kaki untuk operan jauh.
+                </p>
+                <div class="bg-slate-800/80 p-3 rounded-lg text-xs text-emeraldLight">
+                    <span class="font-bold block text-white mb-1"><i class="fa-solid fa-lightbulb text-yellow-400 mr-1"></i> Pro Tip:</span>
+                    Pastikan kaki tumpu sejajar dengan bola dan mengarah tepat ke target operan.
+                </div>
+            </div>
+
+            <!-- Shooting -->
+            <div class="glass-card p-6 rounded-2xl relative group hover:-translate-y-2 transition-transform duration-300">
+                <div class="w-14 h-14 rounded-xl bg-emeraldMain/20 border border-emeraldMain/40 flex items-center justify-center text-emeraldLight text-2xl mb-4 group-hover:bg-emeraldMain group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-bullseye"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 font-heading">3. Shooting (Menembak Bola)</h3>
+                <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                    Teknik menendang bola secara keras dan terarah menuju gawang lawan untuk mencetak gol. Membutuhkan akurasi dan tenaga mendalam.
+                </p>
+                <div class="bg-slate-800/80 p-3 rounded-lg text-xs text-emeraldLight">
+                    <span class="font-bold block text-white mb-1"><i class="fa-solid fa-lightbulb text-yellow-400 mr-1"></i> Pro Tip:</span>
+                    Kunci pergelangan kaki dan condongkan badan sedikit ke depan agar tembakan tidak melambung terlalu tinggi.
+                </div>
+            </div>
+
+            <!-- Control / First Touch -->
+            <div class="glass-card p-6 rounded-2xl relative group hover:-translate-y-2 transition-transform duration-300">
+                <div class="w-14 h-14 rounded-xl bg-emeraldMain/20 border border-emeraldMain/40 flex items-center justify-center text-emeraldLight text-2xl mb-4 group-hover:bg-emeraldMain group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-shoe-prints"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 font-heading">4. Control / First Touch</h3>
+                <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                    Kemampuan menghentikan dan menguasai bola umpan pertama kali dengan empuk agar bola tetap berada dalam jangkauan ideal.
+                </p>
+                <div class="bg-slate-800/80 p-3 rounded-lg text-xs text-emeraldLight">
+                    <span class="font-bold block text-white mb-1"><i class="fa-solid fa-lightbulb text-yellow-400 mr-1"></i> Pro Tip:</span>
+                    Tarik sedikit kaki saat bola menyentuh permukaan untuk menyerap kecepatan laju bola.
+                </div>
+            </div>
+
+            <!-- Heading -->
+            <div class="glass-card p-6 rounded-2xl relative group hover:-translate-y-2 transition-transform duration-300">
+                <div class="w-14 h-14 rounded-xl bg-emeraldMain/20 border border-emeraldMain/40 flex items-center justify-center text-emeraldLight text-2xl mb-4 group-hover:bg-emeraldMain group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 font-heading">5. Heading (Sundulan Bola)</h3>
+                <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                    Menggunakan dahi kepala untuk mengoper, menyapu bahaya, atau mengarahkan bola ke dalam gawang pada situasi bola udara.
+                </p>
+                <div class="bg-slate-800/80 p-3 rounded-lg text-xs text-emeraldLight">
+                    <span class="font-bold block text-white mb-1"><i class="fa-solid fa-lightbulb text-yellow-400 mr-1"></i> Pro Tip:</span>
+                    Gunakan area dahi (depan), bukan puncak kepala, dan tatap bola secara fokus saat perkenaan.
+                </div>
+            </div>
+
+            <!-- Tackling & Intercept -->
+            <div class="glass-card p-6 rounded-2xl relative group hover:-translate-y-2 transition-transform duration-300">
+                <div class="w-14 h-14 rounded-xl bg-emeraldMain/20 border border-emeraldMain/40 flex items-center justify-center text-emeraldLight text-2xl mb-4 group-hover:bg-emeraldMain group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-hand-halved"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 font-heading">6. Tackling & Intercept</h3>
+                <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                    Teknik bertahan untuk merebut bola dari penguasaan lawan secara bersih tanpa melakukan pelanggaran berisiko.
+                </p>
+                <div class="bg-slate-800/80 p-3 rounded-lg text-xs text-emeraldLight">
+                    <span class="font-bold block text-white mb-1"><i class="fa-solid fa-lightbulb text-yellow-400 mr-1"></i> Pro Tip:</span>
+                    Hitung waktu (timing) dengan cermat, fokus utama adalah mengenai bola terlebih dahulu.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PERATURAN SECTION -->
+    <section id="peraturan" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/50">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white">Peraturan <span class="text-gradient">Utama Pertandingan</span></h2>
+                <p class="text-slate-400 mt-2">Regulasi resmi (Laws of the Game) yang diatur oleh IFAB dan FIFA.</p>
+                <div class="w-20 h-1 bg-emeraldMain mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Durasi & Jumlah Pemain -->
+                <div class="glass-card p-6 rounded-2xl space-y-4">
+                    <div class="flex items-center space-x-3 text-emeraldLight">
+                        <i class="fa-solid fa-stopwatch text-2xl"></i>
+                        <h3 class="text-lg font-bold text-white font-heading">Durasi & Susunan Tim</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-300 list-disc list-inside">
+                        <li><strong>Waktu Normal:</strong> 2 x 45 menit (Istirahat 15 menit).</li>
+                        <li><strong>Pemain di Lapangan:</strong> 11 pemain per tim (termasuk 1 Penjaga Gawang/Kiper).</li>
+                        <li><strong>Minimal Pemain:</strong> Pertandingan dihentikan jika suatu tim memiliki kurang dari 7 pemain.</li>
+                        <li><strong>Pergantian Pemain:</strong> Standar 5 pergantian pemain resmi per laga.</li>
+                    </ul>
+                </div>
+
+                <!-- Offside Rule -->
+                <div class="glass-card p-6 rounded-2xl space-y-4">
+                    <div class="flex items-center space-x-3 text-emeraldLight">
+                        <i class="fa-solid fa-flag text-2xl"></i>
+                        <h3 class="text-lg font-bold text-white font-heading">Aturan Offside</h3>
+                    </div>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Pemain penyerang dinyatakan <strong>Offside</strong> apabila berada lebih dekat dengan garis gawang lawan daripada bola dan pemain bertahan kedua terakhir lawan saat bola dioperkan kepadanya.
+                    </p>
+                    <div class="bg-slate-800 p-3 rounded-lg text-xs text-slate-400 border-l-2 border-emeraldLight">
+                        * Pengecualian: Tidak ada offside langsung dari lemparan dalam (throw-in), tendangan sudut (corner), atau tendangan gawang.
+                    </div>
+                </div>
+
+                <!-- Kartu & Pelanggaran -->
+                <div class="glass-card p-6 rounded-2xl space-y-4">
+                    <div class="flex items-center space-x-3 text-emeraldLight">
+                        <i class="fa-solid fa-note-sticky text-2xl"></i>
+                        <h3 class="text-lg font-bold text-white font-heading">Pelanggaran & Sanksi</h3>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 pt-1">
+                        <div class="bg-yellow-500/10 border border-yellow-500/30 p-3 rounded-xl">
+                            <span class="block text-yellow-400 font-bold text-xs uppercase mb-1">🟨 Kartu Kuning</span>
+                            <span class="text-xs text-slate-300">Peringatan keras atas pelanggaran berulang atau tackle berbahaya ringan.</span>
+                        </div>
+                        <div class="bg-red-500/10 border border-red-500/30 p-3 rounded-xl">
+                            <span class="block text-red-400 font-bold text-xs uppercase mb-1">🟥 Kartu Merah</span>
+                            <span class="text-xs text-slate-300">Pengusiran langsung keluar lapangan (atau akumulasi 2 Kartu Kuning).</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Penalti & Restart -->
+                <div class="glass-card p-6 rounded-2xl space-y-4">
+                    <div class="flex items-center space-x-3 text-emeraldLight">
+                        <i class="fa-solid fa-circle-dot text-2xl"></i>
+                        <h3 class="text-lg font-bold text-white font-heading">Tendangan Penalti & Lemparan</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-300 list-disc list-inside">
+                        <li><strong>Tendangan Penalti:</strong> Diberikan jika terjadi pelanggaran di dalam area kotak penalti tim bertahan (jarak 11 meter).</li>
+                        <li><strong>Lemparan Dalam:</strong> Dilakukan dengan kedua tangan di atas kepala saat bola keluar dari garis samping lapangan.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ORGANISASI SECTION -->
+    <section id="organisasi" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white">Organisasi <span class="text-gradient">Sepak Bola</span></h2>
+            <p class="text-slate-400 mt-2">Badan pengatur regulasi dan kompetisi sepak bola internasional & nasional.</p>
+            <div class="w-20 h-1 bg-emeraldMain mx-auto mt-3 rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- FIFA -->
+            <div class="glass-card p-6 rounded-2xl text-center space-y-3 hover:border-emeraldLight/50 transition-all">
+                <div class="w-16 h-16 rounded-full bg-emeraldMain/20 border border-emeraldLight/30 flex items-center justify-center text-emeraldLight text-2xl mx-auto">
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white font-heading">FIFA</h3>
+                <p class="text-xs text-emeraldLight font-semibold uppercase tracking-wider">Federasi Internasional</p>
+                <p class="text-slate-300 text-xs leading-relaxed">
+                    Fédération Internationale de Football Association. Induk organisasi tertinggi sepak bola dunia yang menyelenggarakan Piala Dunia FIFA.
+                </p>
+            </div>
+
+            <!-- UEFA -->
+            <div class="glass-card p-6 rounded-2xl text-center space-y-3 hover:border-emeraldLight/50 transition-all">
+                <div class="w-16 h-16 rounded-full bg-emeraldMain/20 border border-emeraldLight/30 flex items-center justify-center text-emeraldLight text-2xl mx-auto">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white font-heading">UEFA</h3>
+                <p class="text-xs text-emeraldLight font-semibold uppercase tracking-wider">Konfederasi Eropa</p>
+                <p class="text-slate-300 text-xs leading-relaxed">
+                    Union of European Football Associations. Mengatur sepak bola di Eropa dan menaungi ajang bergengsi Liga Champions UEFA.
+                </p>
+            </div>
+
+            <!-- AFC -->
+            <div class="glass-card p-6 rounded-2xl text-center space-y-3 hover:border-emeraldLight/50 transition-all">
+                <div class="w-16 h-16 rounded-full bg-emeraldMain/20 border border-emeraldLight/30 flex items-center justify-center text-emeraldLight text-2xl mx-auto">
+                    <i class="fa-solid fa-sun"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white font-heading">AFC</h3>
+                <p class="text-xs text-emeraldLight font-semibold uppercase tracking-wider">Konfederasi Asia</p>
+                <p class="text-slate-300 text-xs leading-relaxed">
+                    Asian Football Confederation. Badan pengatur sepak bola di benua Asia yang mengelola Piala Asia dan AFC Champions League.
+                </p>
+            </div>
+
+            <!-- PSSI -->
+            <div class="glass-card p-6 rounded-2xl text-center space-y-3 hover:border-emeraldLight/50 transition-all">
+                <div class="w-16 h-16 rounded-full bg-emeraldMain/20 border border-emeraldLight/30 flex items-center justify-center text-emeraldLight text-2xl mx-auto">
+                    <i class="fa-solid fa-flag"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white font-heading">PSSI</h3>
+                <p class="text-xs text-emeraldLight font-semibold uppercase tracking-wider">Federasi Nasional Indonesia</p>
+                <p class="text-slate-300 text-xs leading-relaxed">
+                    Persatuan Sepakbola Seluruh Indonesia. Didirikan pada 19 April 1930 di Yogyakarta, menaungi Timnas Indonesia dan kompetisi Liga 1.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- KESIMPULAN & MOTIVASI SECTION -->
+    <section id="motivasi" class="py-20 px-4 sm:px-6 lg:px-8 relative">
+        <div class="max-w-4xl mx-auto">
+            
+            <!-- Banner Kesimpulan -->
+            <div class="bg-gradient-emerald rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden mb-12 text-center sm:text-left">
+                <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-white/5 rounded-full filter blur-xl"></div>
+                
+                <span class="inline-block px-3 py-1 rounded-full bg-white/20 text-white font-bold text-xs uppercase tracking-wider mb-4">
+                    <i class="fa-solid fa-gem mr-1"></i> Kesimpulan
+                </span>
+                
+                <h2 class="text-2xl sm:text-4xl font-extrabold font-heading text-white mb-4">
+                    Sepak Bola: Lebih Dari Sekadar Permainan
+                </h2>
+                
+                <p class="text-slate-100 text-sm sm:text-base leading-relaxed mb-6 opacity-95">
+                    Sepak bola mengaitkan olah fisik, ketajaman taktik, dan ketahanan mental. Ia menjadi sarana ampuh pembentuk karakter jujur, melatih kepemimpinan, memupuk persaudaraan tanpa batas, serta mengajarkan pentingnya kolaborasi dan kerja keras dalam mencapai impian bersama.
+                </p>
+            </div>
+
+            <!-- Motivation Quote Card (Rohis Leadership Theme) -->
+            <div class="glass-card rounded-2xl p-8 sm:p-10 border-emeraldLight/40 relative">
+                <i class="fa-solid fa-quote-left text-4xl text-emeraldLight/30 absolute top-6 left-6"></i>
+                
+                <div class="relative z-10 text-center max-w-2xl mx-auto space-y-6">
+                    <h3 class="text-xl sm:text-2xl font-bold font-heading text-white tracking-wide">
+                        "Kemenangan Sejati Lahir dari Kedisiplinan & Kebersamaan"
+                    </h3>
+                    
+                    <p class="text-slate-300 text-base sm:text-lg italic leading-relaxed">
+                        "Di dalam lapangan sepak bola, kita belajar bahwa kehebatan individu tidak akan berarti tanpa kerja sama tim. Begitu pula dalam kehidupan dan amanah kepemimpinan: <span class="text-emeraldLight font-semibold">Usaha yang tekun, ketawakkalan, disiplin ibadah, serta semangat pantang menyerah</span> adalah kunci meraih cita-cita yang berkah."
+                    </p>
+
+                    <div class="pt-4 border-t border-slate-700/50 flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-full bg-emeraldMain flex items-center justify-center text-white font-bold mb-2 shadow-lg">
+                            FPW
+                        </div>
+                        <span class="font-bold text-white text-sm">Fauzan Prabu Wijaya</span>
+                        <span class="text-xs text-emeraldLight">Ketua Rohis 2026 • SMKN 9 Kabupaten Tangerang</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-10 px-4 sm:px-6 lg:px-8 text-center text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto space-y-4">
+            <div class="flex items-center justify-center space-x-2">
+                <div class="w-8 h-8 rounded-full bg-emeraldMain flex items-center justify-center text-white text-xs">
+                    <i class="fa-solid fa-football"></i>
+                </div>
+                <span class="font-bold text-white font-heading">FOOTBALL<span class="text-emeraldLight">HUB</span></span>
+            </div>
+
+            <p class="text-xs text-slate-500 max-w-md mx-auto">
+                Website interaktif edukasi sepak bola dirancang dengan performa ringan, HD visual, dan responsif.
+            </p>
+
+            <div class="pt-4 border-t border-slate-900 text-xs text-slate-400">
+                Hak Cipta &copy; 2026 <span class="text-emeraldLight font-medium">Fauzan Prabu Wijaya</span> — XI TKJ 1 SMKN 9 Kabupaten Tangerang, Banten. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Smooth Scroll-To-Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-emeraldMain hover:bg-emeraldLight text-white flex items-center justify-center shadow-xl opacity-0 pointer-events-none transition-all duration-300 z-50">
+        <i class="fa-solid fa-arrow-up text-lg"></i>
+    </button>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            // Mobile Menu Toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                if (mobileMenu.classList.contains('hidden')) {
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+                } else {
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-xmark');
+                }
+            });
+
+            // Close mobile menu on link click
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+                });
+            });
+
+            const filterButtons = document.querySelectorAll('.player-filter-btn');
+            const playerCards = document.querySelectorAll('.player-card');
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Active button state
+                    filterButtons.forEach(b => {
+                        b.classList.remove('bg-emeraldMain', 'text-white');
+                        b.classList.add('glass-card', 'text-slate-300');
+                    });
+                    btn.classList.add('bg-emeraldMain', 'text-white');
+                    btn.classList.remove('glass-card', 'text-slate-300');
+
+                    const filter = btn.getAttribute('data-filter');
+
+                    playerCards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+                        if (filter === 'all' || category === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            const backToTopBtn = document.getElementById('back-to-top');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                    backToTopBtn.classList.add('opacity-100');
+                } else {
+                    backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                    backToTopBtn.classList.remove('opacity-100');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
